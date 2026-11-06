@@ -17,3 +17,23 @@ Il vous faudra créer une classe lapin, une classe renard, et une classe piège.
 Commencez par lister dans le readme les attributs et méthodes de chaque classes (en détaillant les input et output des méthodes).
 
 Implémentez ensuite le jeu.
+
+Liste des classes :
+Rabbit(Animal) :
+- attribut : x,y, nombre de piège restant, nombre de capture
+- méthode : déplacement (input : un des veceurs direction : [1,0],[0,1],[-1,0],[0,-1] , output : None) (modification sur place de la pisition)
+
+Fox(Animal) : 
+- attribut : x,y
+- méthode : déplacement (input : un des veceurs direction : [1,0],[0,1],[-1,0],[0,-1])
+
+Foxes:
+-move()
+-has_eaten
+
+Piege : 
+-attribut : liste_position
+
+Animal : 
+-attribut : is_fallen
+-method : draw()
