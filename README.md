@@ -19,7 +19,9 @@ Commencez par lister dans le readme les attributs et méthodes de chaque classes
 
 lapin :
     (x,y) coordonnées
-    direction de déplaceme,t
+    direction de déplacement
+    méthode : déplacement (pour le déplacement selon la direction)
+    
 
 piege :
     (x,y)
@@ -27,6 +29,7 @@ piege :
 renard :
      (x,y)
      direction 
+     methode : deplacement
      
 en fait j'aurais pu faire animal juste (pour rassembler renard et lapin)
 Implémentez ensuite le jeu.

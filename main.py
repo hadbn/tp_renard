@@ -15,9 +15,9 @@ class lapin:
         self.direction=direction
         self.color=(255,255,255)
 
-    def deplacement(self,x,y,direction=(0,0)):
-        self.x=x+direction[0]
-        self.y=y+direction[1]
+    def deplacement(self,direction=(0,0)):
+        self.x=self.x+direction[0]
+        self.y=self.y+direction[1]
 
 class piege:
     def __init__(self,x,y):
@@ -32,9 +32,9 @@ class renard:
         self.direction=direction
         self.color=(255, 127, 0)
     
-    def deplacement(self,x,y,direction=(0,0)):
-        self.x=x+direction[0]
-        self.y=y+direction[1]
+    def deplacement(self,direction=(0,0)):
+        self.x=self.x+direction[0]
+        self.y=self.y+direction[1]
     
 
 petitLapin=lapin(20,15)
@@ -63,13 +63,13 @@ while running==True:
             if event.key==pg.K_p:
                 pieges.append(piege(petitLapin.x,petitLapin.y))
     
-    petitLapin.deplacement(petitLapin.x,petitLapin.y,petitLapin.direction)
+    petitLapin.deplacement(petitLapin.direction)
     screen.fill((0,255,0))
     rect = pg.Rect(taille*petitLapin.x, taille*petitLapin.y, taille, taille)
     pg.draw.rect(screen, petitLapin.color, rect)
 
     if tick%10==0:
-        renards.append(renard(randint(0,20),randint(0,15)))
+        renards.append(renard(randint(0,40),randint(0,30)))
 
 
     for p in pieges:
@@ -83,15 +83,16 @@ while running==True:
             running = False
             print('lapin mangé par renard')
         elif dx==0 and dy!=0:
-            r.y=r.y+(dy/abs(dy)) #ça ajoute 1 ou -1 en fonction du signe
+            direction=[0,dy/abs(dy)]
+            r.deplacement(direction) #ça ajoute 1 ou -1 en fonction du signe
         elif dy==0 and dx!=0:
-            r.x=r.x+(dx/abs(dx)) #idem
+            direction=[dx/abs(dx),0]
+            r.deplacement(direction) #idem
         else :
-            mov=[dx/abs(dx),dy/abs(dy)]
-            i=randint(0,1)
-            mov[1-i]=0
-            r.x=r.x+mov[0]            #comme ça on choisit le déplacement sur x ou y aléatoire dans la bonne direction
-            r.y=r.y+mov[1]
+            direction=[dx/abs(dx),dy/abs(dy)]
+            i=randint(0,1)                          #le renard se déplace ou bien sur l'axe x ou bien y de manière aléatoier
+            direction[1-i]=0
+            r.deplacement(direction)
 
     for r in renards:
             rect = pg.Rect(taille*r.x, taille*r.y, taille, taille)
@@ -108,7 +109,10 @@ while running==True:
                 pieges.remove(p)
                 break           #au début j'avais pas mis le break mais si les renards se reprennent le piege dans la même bouclke ça fait planter le code 
 
-    
+
+    if petitLapin.x<0 or petitLapin.x>40 or petitLapin.y<0 or petitLapin.y>30:
+        running = False
+        print('sortie du cadre')
     pg.display.update()
 
 pg.quit()
