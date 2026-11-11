@@ -9,9 +9,10 @@ clock = pg.time.Clock()
 taille=10
 
 class lapin:
-    def __init__(self,x,y,direction=(0,0)):
+    def __init__(self,x,y,nbrRenards=0,direction=(0,0)):
         self.x=x
         self.y=y
+        self.nbrRenards=nbrRenards
         self.direction=direction
         self.color=(255,255,255)
 
@@ -82,6 +83,7 @@ while running==True:
         if dx==0 and dy==0:
             running = False
             print('lapin mangé par renard')
+            print('nombre renards capturés : ', petitLapin.nbrRenards)
         elif dx==0 and dy!=0:
             direction=[0,dy/abs(dy)]
             r.deplacement(direction) #ça ajoute 1 ou -1 en fonction du signe
@@ -103,16 +105,21 @@ while running==True:
         if p.x==petitLapin.x and p.y==petitLapin.y:
             running = False
             print('lapin mort')
+            print('nombre renards capturés : ', petitLapin.nbrRenards)
         for r in renards:
             if p.x==r.x and p.y==r.y:
                 renards.remove(r)
                 pieges.remove(p)
+                petitLapin.nbrRenards+=1
+                print('nombre renards capturés : ', petitLapin.nbrRenards)
+
                 break           #au début j'avais pas mis le break mais si les renards se reprennent le piege dans la même bouclke ça fait planter le code 
 
 
     if petitLapin.x<0 or petitLapin.x>40 or petitLapin.y<0 or petitLapin.y>30:
         running = False
         print('sortie du cadre')
+        print('nombre renards capturés : ', petitLapin.nbrRenards)
     pg.display.update()
 
 pg.quit()

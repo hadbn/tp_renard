@@ -20,6 +20,7 @@ Commencez par lister dans le readme les attributs et méthodes de chaque classes
 lapin :
     (x,y) coordonnées
     direction de déplacement
+    nbr de renards attrapés
     méthode : déplacement (pour le déplacement selon la direction)
     
 
@@ -31,5 +32,6 @@ renard :
      direction 
      methode : deplacement
      
-en fait j'aurais pu faire animal juste (pour rassembler renard et lapin)
+en fait j'aurais pu faire une class animal juste (pour rassembler renard et lapin)
+
 Implémentez ensuite le jeu.
