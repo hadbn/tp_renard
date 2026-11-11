@@ -68,7 +68,7 @@ while running==True:
     rect = pg.Rect(taille*petitLapin.x, taille*petitLapin.y, taille, taille)
     pg.draw.rect(screen, petitLapin.color, rect)
 
-    if tick%5==0:
+    if tick%10==0:
         renards.append(renard(randint(0,20),randint(0,15)))
 
 
@@ -76,10 +76,37 @@ while running==True:
         rect = pg.Rect(taille*p.x, taille*p.y, taille, taille)
         pg.draw.rect(screen, p.color, rect)
 
+    for r in renards:           #pour calculer la direction de déplacement des renards
+        dx=petitLapin.x-r.x
+        dy=petitLapin.y-r.y
+        if dx==0 and dy==0:
+            running = False
+            print('lapin mangé par renard')
+        elif dx==0 and dy!=0:
+            r.y=r.y+(dy/abs(dy)) #ça ajoute 1 ou -1 en fonction du signe
+        elif dy==0 and dx!=0:
+            r.x=r.x+(dx/abs(dx)) #idem
+        else :
+            mov=[dx/abs(dx),dy/abs(dy)]
+            i=randint(0,1)
+            mov[1-i]=0
+            r.x=r.x+mov[0]            #comme ça on choisit le déplacement sur x ou y aléatoire dans la bonne direction
+            r.y=r.y+mov[1]
+
+    for r in renards:
+            rect = pg.Rect(taille*r.x, taille*r.y, taille, taille)
+            pg.draw.rect(screen, r.color, rect)
+
+
     for p in pieges:
         if p.x==petitLapin.x and p.y==petitLapin.y:
             running = False
             print('lapin mort')
+        for r in renards:
+            if p.x==r.x and p.y==r.y:
+                renards.remove(r)
+                pieges.remove(p)
+                break           #au début j'avais pas mis le break mais si les renards se reprennent le piege dans la même bouclke ça fait planter le code 
 
     
     pg.display.update()
