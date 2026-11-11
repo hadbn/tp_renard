@@ -16,4 +16,22 @@ Il vous faudra créer une classe lapin, une classe renard, et une classe piège.
 
 Commencez par lister dans le readme les attributs et méthodes de chaque classes (en détaillant les input et output des méthodes).
 
+
+lapin :
+    (x,y) coordonnées
+    direction de déplacement
+    nbr de renards attrapés
+    méthode : déplacement (pour le déplacement selon la direction)
+    
+
+piege :
+    (x,y)
+
+renard :
+     (x,y)
+     direction 
+     methode : deplacement
+     
+en fait j'aurais pu faire une class animal juste (pour rassembler renard et lapin)
+
 Implémentez ensuite le jeu.
