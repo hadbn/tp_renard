@@ -17,3 +17,46 @@ Il vous faudra créer une classe lapin, une classe renard, et une classe piège.
 Commencez par lister dans le readme les attributs et méthodes de chaque classes (en détaillant les input et output des méthodes).
 
 Implémentez ensuite le jeu.
+
+LISTE DES CLASSES 
+Classe Lapin : 
+Attributs :
+    x : Position X 
+    y : Position Y 
+    couleur
+
+
+Méthodes :
+    __init__(self, x_depart, y_depart)
+
+    deplacer(self, direction, largeur_grille, hauteur_grille)
+        Output : Met à jour x et y
+
+    dessiner(self, surface, taille_case)`
+        Output : Dessine le lapin
+
+Classe Renard
+Attributs :
+    x : Position X
+    y : Position Y
+    couleur
+
+Méthodes :
+    __init__(self, x_depart, y_depart)
+
+    traquer(self, lapin_x, lapin_y)
+    Output : Modifie x et y pour se rapprocher du lapin
+
+    dessiner(self, surface, taille_case)
+    Output : Dessine le renard sur l'écran.
+
+Classe Piege
+Attributs :
+   x : Position X
+   y : Position Y
+   couleur
+
+**Méthodes :**
+    __init__(self, x_pos, y_pos)
+    dessiner(self, surface, taille_case)
+    Output : dessine le piège
